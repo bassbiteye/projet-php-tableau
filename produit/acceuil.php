@@ -12,15 +12,24 @@
   <a href="ajout.php">ajout</a>
   <a href="updateliste.php">update</a>
   <a href="supprimer.php">supprimer</a>
+  <a href="rechercherProduit.php">recherche</a>
+ 
   <div class="search-container">
-    <form action="rechercherProduit.php">
+    <form action="index.php">
    
-      <button type="submit"><i class="fa fa-search"></i></button>
+      <button type="submit"><i class="fa fa-sign-out">sign out</i></button>
     </form>
   </div>
 </div>
 
-
+<?php
+$myfile = fopen("newfile.txt", "w") or die("Unable to open file!");
+$txt = "John Doe\n";
+fwrite($myfile, $txt);
+$txt = "Jane Doe\n";
+fwrite($myfile, $txt);
+fclose($myfile);
+?>
 
 </body>
 </html>

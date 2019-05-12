@@ -31,11 +31,14 @@ include'acceuil.php';
                 </tr>
                 <?php
     
-$produit= array(
-    array('nom'=>'riz' ,'prix'=> '500','quantite'=>'15'),
-        array('nom'=>'lait' ,'prix'=> '100','quantite'=> '30'),
-        array('nom'=>'sucre' ,'prix'=> '600','quantite'=> '50'),
-        array('nom'=>'huil' ,'prix'=> '300','quantite'=> '50'));
+$produit=array(array('nom'=>'riz' ,'prix'=> '500','quantite'=>'5'),
+array('nom'=>'lait' ,'prix'=> '100','quantite'=> '500'),
+array('nom'=>'sucre' ,'prix'=> '600','quantite'=> '100'),
+array('nom'=>'cafe' ,'prix'=> '100','quantite'=> '03'),
+array('nom'=>'pantalon' ,'prix'=> '600','quantite'=> '10'),
+array('nom'=>'t-shirt' ,'prix'=> '100','quantite'=> '20'),
+array('nom'=>'chemise' ,'prix'=> '600','quantite'=> '100'),
+array('nom'=>'huil' ,'prix'=> '300','quantite'=> '100'));
 
 for($i=0;$i <count($produit);$i++){
     $nom=$produit[$i]['nom'];
@@ -59,18 +62,27 @@ for($i=0;$i <count($produit);$i++){
     $prix=$produit[$i]['prix'];
     $qte=$produit[$i]['quantite'];
     $montant=($prix*$qte);
-    ?>
+    if($qte<=10){
+        echo"<tr>";
+        echo '<td style=background:red>'.$nom.'</td>';
+        echo '<td style=background:red>'.$prix.'</td>';
+        echo '<td style=background:red>'.$qte.'</td>';
+        echo '<td style=background:red>'.$montant=($prix*$qte).'</td>';
+        echo"<td><a href='supprimerliste.php?nom=$nom&prix=$prix&qte=$qte' class='btn btn-danger'>supprimer</a></td>";
+        echo"</tr>";
+            
+    }else{
+        echo"<tr>";
+        echo '<td style=background:grey>'.$nom.'</td>';
+        echo '<td style=background:grey>'.$prix.'</td>';
+        echo '<td style=background:grey>'.$qte.'</td>';
+        echo '<td style=background:grey>'.$montant=($prix*$qte).'</td>';
+        echo"<td><a href='supprimerliste.php?nom=$nom&prix=$prix&qte=$qte' class='btn btn-danger'>supprimer</a></td>";
+        echo"</tr>";
+           
+    }
   
     
-    <tr>
-   <td> <?php echo $nom;?></td>
-   <td> <?php echo $prix;?></td>
-   <td> <?php echo $qte;?></td>
-    <td><?php echo $montant=($prix*$qte);?></td>
-    <?php  echo"<td><a href='supprimerliste.php?nom=$nom&prix=$prix&qte=$qte'>supprimer</a></td>";
-
-        echo"<tr>";
-
 }
 ?>  
      

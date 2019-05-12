@@ -23,7 +23,7 @@ include'acceuil.php';
 <form action="rechercherProduit.php" method="post">
 
 <label control-label class="control-label">quantite</label>
- <input type="number" name="qte">
+ <input type="number" name="qte" value="<?php echo $_POST['qte']; ?> ">
  <label control-label class="control-label">prix min</label>
  <input type="number" name="min">
  <label control-label class="control-label">prix max</label>
@@ -46,20 +46,25 @@ include'acceuil.php';
                 </tr>
                 <?php
                 extract($_POST);
-$produit= array(
-    array('nom'=>'riz' ,'prix'=> '500','quantite'=>'1500'),
-    array('nom'=>'lait' ,'prix'=> '100','quantite'=> '500'),
-    array('nom'=>'sucre' ,'prix'=> '600','quantite'=> '100'),
-    array('nom'=>'huil' ,'prix'=> '300','quantite'=> '8'),
-    array('nom'=>'farine' ,'prix'=> '250','quantite'=> '9'),
-    );
+$produit= array(array('nom'=>'riz' ,'prix'=> '500','quantite'=>'5'),
+array('nom'=>'lait' ,'prix'=> '100','quantite'=> '500'),
+array('nom'=>'sucre' ,'prix'=> '600','quantite'=> '100'),
+array('nom'=>'cafe' ,'prix'=> '100','quantite'=> '03'),
+array('nom'=>'pantalon' ,'prix'=> '600','quantite'=> '10'),
+array('nom'=>'t-shirt' ,'prix'=> '100','quantite'=> '20'),
+array('nom'=>'chemise' ,'prix'=> '600','quantite'=> '100'),
+array('nom'=>'huil' ,'prix'=> '300','quantite'=> '100'));
 
 for($i=0;$i <count($produit);$i++){
     $nom=$produit[$i]['nom'];
     $prix=$produit[$i]['prix'];
     $qte=$produit[$i]['quantite'];
      if (isset($_POST['ok'])){
-        if($_POST['qte']<=$qte){
+        if (empty($_POST["qte"])&&empty($_POST["min"])&&empty($_POST["max"])) {
+            echo "<h3 style=color:red>renseigner au moins un champ</h3>";
+            exit;
+          }
+        if($_POST['qte']==$qte  && empty($_POST["min"])&& empty($_POST["max"])){
            
             if($qte<=10){
                 echo "<tr>";
@@ -76,8 +81,7 @@ for($i=0;$i <count($produit);$i++){
                 echo"<tr>";
            
         }
-    }else
-    if($_POST['max']<=$prix || $_POST['min']<=$prix){
+    }else if($_POST['max']<=$prix  && empty($_POST["qte"]) && empty($_POST["min"])){
      
         if($qte<=10){
             echo "<tr>";
@@ -95,6 +99,61 @@ for($i=0;$i <count($produit);$i++){
        
     }
 }
+else if($_POST['min']>=$prix  && empty($_POST["qte"]) && empty($_POST["max"])){
+     
+    if($qte<=10){
+        echo "<tr>";
+        echo '<td style=background-color:red>'.$nom.'</td>';
+        echo '<td style=background-color:red>'.$prix.'</td>';
+        echo '<td style=background-color:red>'.$qte.'</td>';
+        echo '<td style=background-color:red>'.$montant=($prix*$qte).'</td>';  
+    }else{
+     
+        echo "<td>".$nom.'</td>';
+        echo '<td>'.$prix.'</td>';
+        echo '<td>'.$qte.'</td>';
+        echo '<td>'.$montant=($prix*$qte).'</td>';
+        echo"<tr>";
+   
+}
+}
+
+else if($_POST['max']>=$prix  && $_POST['min']<=$prix  &&empty($_POST["qte"])){
+     
+    if($qte<=10){
+        echo "<tr>";
+        echo '<td style=background-color:red>'.$nom.'</td>';
+        echo '<td style=background-color:red>'.$prix.'</td>';
+        echo '<td style=background-color:red>'.$qte.'</td>';
+        echo '<td style=background-color:red>'.$montant=($prix*$qte).'</td>';  
+    }else{
+     
+        echo "<td>".$nom.'</td>';
+        echo '<td>'.$prix.'</td>';
+        echo '<td>'.$qte.'</td>';
+        echo '<td>'.$montant=($prix*$qte).'</td>';
+        echo"<tr>";
+   
+}
+}else if($_POST['max']>=$prix  && $_POST['min']<=$prix  && $_POST["qte"]==$qte){
+     
+    if($qte<=10){
+        echo "<tr>";
+        echo '<td style=background-color:red>'.$nom.'</td>';
+        echo '<td style=background-color:red>'.$prix.'</td>';
+        echo '<td style=background-color:red>'.$qte.'</td>';
+        echo '<td style=background-color:red>'.$montant=($prix*$qte).'</td>';  
+    }else{
+     
+        echo "<td>".$nom.'</td>';
+        echo '<td>'.$prix.'</td>';
+        echo '<td>'.$qte.'</td>';
+        echo '<td>'.$montant=($prix*$qte).'</td>';
+        echo"<tr>";
+   
+}
+}
+
     }
 
 }
