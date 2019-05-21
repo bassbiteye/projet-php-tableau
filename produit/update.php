@@ -113,7 +113,7 @@ for($i=0;$i <count($produit);$i++){
         echo '<td style=background:grey>'.$prix.'</td>';
         echo '<td style=background:grey>'.$qte.'</td>';
         echo '<td style=background:grey>'.$montant=($prix*$qte).'</td>';
-        echo"<td><a href='update.php?nom=$nom&prix=$prix&qte=$qte'>modifier</a></td>";
+        echo"<td><a href='update.php?nom=$nom&prix=$prix&qte=$qte' class='btn btn-success'>modifier</a></td>";
         echo"<tr>";
             echo"<tr>";
     }

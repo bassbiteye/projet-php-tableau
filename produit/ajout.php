@@ -72,12 +72,7 @@ $produit= array(array('nom'=>'riz' ,'prix'=> '500','quantite'=>'5'),
         
         if (isset($_POST['valider'])){
             for($i=0;$i <count($produit);$i++){
-        if(strtolower($nom)==$produit[$i]['nom']){
-            echo '<p style=color:red> Deux produits ne peuvent avoir le meme nom</p>';
-        }else{
-
-
-        }
+     
     }
 for($i=0;$i <count($produit);$i++){
    
@@ -85,21 +80,27 @@ for($i=0;$i <count($produit);$i++){
     $nom=$produit[$i]['nom'];
     $prix=$produit[$i]['prix'];;
     $qte=$produit[$i]['quantite'];
-    if($qte<=10){
-        echo"<tr>";
-        echo '<td style=background:red>'.$nom.'</td>';
-        echo '<td style=background:red>'.$prix.'</td>';
-        echo '<td style=background:red>'.$qte.'</td>';
-        echo '<td style=background:red>'.$montant=($prix*$qte).'</td>';
-            echo"<tr>";
+    if(strtolower($nom)==$produit[$i]['nom']){
+        die('Deux produits ne peuvent avoir le meme nom');
     }else{
-        echo"<tr>";
-        echo '<td style=background:grey>'.$nom.'</td>';
-        echo '<td style=background:grey>'.$prix.'</td>';
-        echo '<td style=background:grey>'.$qte.'</td>';
-        echo '<td style=background:grey>'.$montant=($prix*$qte).'</td>';
+        if($qte<=10){
             echo"<tr>";
+            echo '<td style=background:red>'.$nom.'</td>';
+            echo '<td style=background:red>'.$prix.'</td>';
+            echo '<td style=background:red>'.$qte.'</td>';
+            echo '<td style=background:red>'.$montant=($prix*$qte).'</td>';
+                echo"<tr>";
+        }else{
+            echo"<tr>";
+            echo '<td style=background:grey>'.$nom.'</td>';
+            echo '<td style=background:grey>'.$prix.'</td>';
+            echo '<td style=background:grey>'.$qte.'</td>';
+            echo '<td style=background:grey>'.$montant=($prix*$qte).'</td>';
+                echo"<tr>";
+        }
+
     }
+  
   
       }
 

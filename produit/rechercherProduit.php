@@ -64,7 +64,7 @@ for($i=0;$i <count($produit);$i++){
             echo "<h3 style=color:red>renseigner au moins un champ</h3>";
             exit;
           }
-        if($_POST['qte']==$qte  && empty($_POST["min"])&& empty($_POST["max"])){
+        if($_POST['qte']<=$qte  && empty($_POST["min"])&& empty($_POST["max"])){
            
             if($qte<=10){
                 echo "<tr>";
@@ -81,7 +81,7 @@ for($i=0;$i <count($produit);$i++){
                 echo"<tr>";
            
         }
-    }else if($_POST['max']<=$prix  && empty($_POST["qte"]) && empty($_POST["min"])){
+    }else if($_POST['max']>=$prix  && empty($_POST["qte"]) && empty($_POST["min"])){
      
         if($qte<=10){
             echo "<tr>";
@@ -99,7 +99,7 @@ for($i=0;$i <count($produit);$i++){
        
     }
 }
-else if($_POST['min']>=$prix  && empty($_POST["qte"]) && empty($_POST["max"])){
+else if($_POST['min']<=$prix  && empty($_POST["qte"]) && empty($_POST["max"])){
      
     if($qte<=10){
         echo "<tr>";
@@ -135,7 +135,7 @@ else if($_POST['max']>=$prix  && $_POST['min']<=$prix  &&empty($_POST["qte"])){
         echo"<tr>";
    
 }
-}else if($_POST['max']>=$prix  && $_POST['min']<=$prix  && $_POST["qte"]==$qte){
+}else if($_POST['max']>=$prix  && $_POST['min']<=$prix  && $_POST["qte"]<=$qte){
      
     if($qte<=10){
         echo "<tr>";
